@@ -1,0 +1,225 @@
+<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <UserControl.Resources>
+    <Style x:Key="Section" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="FontWeight" Value="SemiBold"/>
+      <Setter Property="Margin" Value="0,18,0,6"/>
+      <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+    </Style>
+    <Style x:Key="Label" TargetType="TextBlock">
+      <Setter Property="Margin" Value="0,8,0,3"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+      <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+    </Style>
+    <Style x:Key="Help" TargetType="TextBlock">
+      <Setter Property="Margin" Value="0,2,0,0"/>
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+      <Setter Property="Foreground" Value="{DynamicResource TextBrushDarker}"/>
+    </Style>
+    <Style x:Key="Check" TargetType="CheckBox">
+      <Setter Property="Margin" Value="0,7,0,0"/>
+      <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+    </Style>
+    <DataTemplate x:Key="SourceRowTemplate">
+      <DockPanel Margin="0,2,0,0">
+        <Button DockPanel.Dock="Right" Content="v" Command="{Binding DownCommand}" Width="26" Margin="4,0,0,0" ToolTip="{DynamicResource LOCMM_Down}"/>
+        <Button DockPanel.Dock="Right" Content="^" Command="{Binding UpCommand}" Width="26" Margin="4,0,0,0" ToolTip="{DynamicResource LOCMM_Up}"/>
+        <CheckBox IsChecked="{Binding Selected}" Content="{Binding Display}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center"/>
+      </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="FieldTemplate">
+      <Expander Margin="0,6,0,0" IsExpanded="False">
+        <Expander.Header>
+          <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding Enabled}" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" Margin="8,0,0,0" VerticalAlignment="Center" Foreground="{DynamicResource TextBrush}"/>
+            <TextBlock Text="{Binding Summary}" Margin="14,0,0,0" VerticalAlignment="Center" Foreground="{DynamicResource TextBrushDarker}"/>
+          </StackPanel>
+        </Expander.Header>
+        <StackPanel Margin="26,2,0,12">
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_Sources}"/>
+          <ComboBox ItemsSource="{Binding SourceChoices}" SelectedValuePath="Value" DisplayMemberPath="Label" SelectedValue="{Binding Sources}" HorizontalAlignment="Left" MinWidth="360"/>
+          <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_PlayniteListNow}"/>
+          <TextBlock Style="{StaticResource Label}" Text="{Binding PlayniteList, Mode=OneWay}" Margin="0,2,0,0"/>
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_OwnList}"/>
+          <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_OwnListHelp}"/>
+          <ItemsControl ItemsSource="{Binding Rows}" ItemTemplate="{StaticResource SourceRowTemplate}" MaxWidth="520" HorizontalAlignment="Left"/>
+          <StackPanel>
+            <StackPanel.Style><Style TargetType="StackPanel"><Style.Triggers><DataTrigger Binding="{Binding IsImage}" Value="True"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger></Style.Triggers></Style></StackPanel.Style>
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_Mode}"/>
+          <ComboBox ItemsSource="{Binding ModeChoices}" SelectedValuePath="Value" DisplayMemberPath="Label" SelectedValue="{Binding Mode}" HorizontalAlignment="Left" MinWidth="360"/>
+          <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <StackPanel>
+              <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_PerSourceCap}" Margin="0,0,0,3"/>
+              <TextBox Text="{Binding PerSourceCap, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Margin="24,0,0,0">
+              <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_TotalCap}" Margin="0,0,0,3"/>
+              <TextBox Text="{Binding TotalCap, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+            </StackPanel>
+          </StackPanel>
+          <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_CapHelp}"/>
+          <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+            <StackPanel>
+              <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_MinAgreeing}" Margin="0,0,0,3"/>
+              <TextBox Text="{Binding MinAgreeing, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Margin="24,0,0,0">
+              <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_MaxValueLength}" Margin="0,0,0,3"/>
+              <TextBox Text="{Binding MaxValueLength, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+            </StackPanel>
+          </StackPanel>
+          <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_AgreeingHelp}"/>
+          <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+            <StackPanel>
+              <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_Sort}" Margin="0,0,0,3"/>
+              <ComboBox ItemsSource="{Binding SortChoices}" SelectedValuePath="Value" DisplayMemberPath="Label" SelectedValue="{Binding Sort}" MinWidth="200" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Margin="24,0,0,0">
+              <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_Case}" Margin="0,0,0,3"/>
+              <ComboBox ItemsSource="{Binding CaseChoices}" SelectedValuePath="Value" DisplayMemberPath="Label" SelectedValue="{Binding Case}" MinWidth="240" HorizontalAlignment="Left"/>
+            </StackPanel>
+          </StackPanel>
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_Exclude}"/>
+          <TextBox Text="{Binding ExcludeRegex, UpdateSourceTrigger=PropertyChanged}"/>
+          <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_ExcludeHelp}"/>
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_Synonyms}"/>
+          <TextBox Text="{Binding Synonyms, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="54" MaxHeight="140" VerticalScrollBarVisibility="Auto"/>
+          <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_SynonymsHelp}"/>
+          </StackPanel>
+          <StackPanel>
+            <StackPanel.Style><Style TargetType="StackPanel"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsImage}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></StackPanel.Style>
+            <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_ImageHelp}" Margin="0,10,0,0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+              <StackPanel>
+                <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgMin}" Margin="0,0,0,3"/>
+                <StackPanel Orientation="Horizontal">
+                  <TextBox Text="{Binding ImgMinWidth, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                  <TextBlock Text=" x " VerticalAlignment="Center" Foreground="{DynamicResource TextBrush}"/>
+                  <TextBox Text="{Binding ImgMinHeight, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                </StackPanel>
+              </StackPanel>
+              <StackPanel Margin="24,0,0,0">
+                <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgMax}" Margin="0,0,0,3"/>
+                <StackPanel Orientation="Horizontal">
+                  <TextBox Text="{Binding ImgMaxWidth, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                  <TextBlock Text=" x " VerticalAlignment="Center" Foreground="{DynamicResource TextBrush}"/>
+                  <TextBox Text="{Binding ImgMaxHeight, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                </StackPanel>
+              </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+              <StackPanel>
+                <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgTolerance}" Margin="0,0,0,3"/>
+                <TextBox Text="{Binding ImgTolerance, UpdateSourceTrigger=PropertyChanged}" Width="70" HorizontalAlignment="Left"/>
+              </StackPanel>
+              <StackPanel Margin="24,0,0,0">
+                <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgComparable}" Margin="0,0,0,3"/>
+                <TextBox Text="{Binding ImgComparable, UpdateSourceTrigger=PropertyChanged}" Width="70" HorizontalAlignment="Left"/>
+              </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+              <StackPanel>
+                <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgMinPixels}" Margin="0,0,0,3"/>
+                <TextBox Text="{Binding ImgMinPixels, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Left"/>
+              </StackPanel>
+              <StackPanel Margin="24,0,0,0">
+                <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgMaxFileKb}" Margin="0,0,0,3"/>
+                <TextBox Text="{Binding ImgMaxFileKb, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Left"/>
+              </StackPanel>
+              <StackPanel Margin="24,0,0,0">
+                <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgRatio}" Margin="0,0,0,3"/>
+                <TextBox Text="{Binding ImgExpectedRatio, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Left"/>
+              </StackPanel>
+            </StackPanel>
+            <CheckBox Style="{StaticResource Check}" Content="{DynamicResource LOCMM_ImgStrict}" IsChecked="{Binding ImgStrictAspect}"/>
+            <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgAboveCap}"/>
+            <ComboBox ItemsSource="{Binding AboveCapChoices}" SelectedValuePath="Value" DisplayMemberPath="Label" SelectedValue="{Binding ImgAboveCap}" MinWidth="380" HorizontalAlignment="Left"/>
+            <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgUnknown}"/>
+            <ComboBox ItemsSource="{Binding UnknownSizeChoices}" SelectedValuePath="Value" DisplayMemberPath="Label" SelectedValue="{Binding ImgUnknownSize}" MinWidth="380" HorizontalAlignment="Left"/>
+            <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ImgFormats}"/>
+            <TextBox Text="{Binding ImgFormats, UpdateSourceTrigger=PropertyChanged}" MaxWidth="360" HorizontalAlignment="Left"/>
+            <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_ImgFormatsHelp}"/>
+          </StackPanel>
+        </StackPanel>
+      </Expander>
+    </DataTemplate>
+  </UserControl.Resources>
+  <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="20,6,20,20" MaxWidth="780" HorizontalAlignment="Left">
+
+      <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_Intro}"/>
+
+      <TextBlock Style="{StaticResource Section}" Text="{DynamicResource LOCMM_SecFields}"/>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_FieldsHelp}"/>
+      <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+        <Button Content="{DynamicResource LOCMM_RulesImport}" Command="{Binding ImportRulesCommand}" Padding="12,4"/>
+        <Button Content="{DynamicResource LOCMM_RulesExport}" Command="{Binding ExportRulesCommand}" Padding="12,4" Margin="8,0,0,0"/>
+      </StackPanel>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_RulesHelp}"/>
+      <ItemsControl ItemsSource="{Binding FieldModels}" ItemTemplate="{StaticResource FieldTemplate}"/>
+
+      <TextBlock Style="{StaticResource Section}" Text="{DynamicResource LOCMM_SecClean}"/>
+      <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_CleanHelp}"/>
+      <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+        <Button Content="{DynamicResource LOCMM_CleanButton}" Command="{Binding CleanCommand}" Padding="12,4"/>
+        <Button Content="{DynamicResource LOCMM_UndoButton}" Command="{Binding UndoCommand}" Padding="12,4" Margin="8,0,0,0"/>
+        <Button Content="{DynamicResource LOCMM_MenuReports}" Command="{Binding OpenReportsCommand}" Padding="12,4" Margin="8,0,0,0"/>
+      </StackPanel>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_CleanSaveFirst}"/>
+
+      <TextBlock Style="{StaticResource Section}" Text="{DynamicResource LOCMM_SecGeneral}"/>
+      <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_Timeout}"/>
+      <TextBox Text="{Binding Timeout, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_TimeoutHelp}"/>
+      <CheckBox Style="{StaticResource Check}" Content="{DynamicResource LOCMM_Prefetch}" IsChecked="{Binding Data.Prefetch}"/>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_PrefetchHelp}"/>
+      <CheckBox Style="{StaticResource Check}" Content="{DynamicResource LOCMM_Loose}" IsChecked="{Binding Data.LooseMatching}"/>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_LooseHelp}"/>
+      <CheckBox Style="{StaticResource Check}" Content="{DynamicResource LOCMM_NotifyErrors}" IsChecked="{Binding Data.NotifyErrors}"/>
+      <CheckBox Style="{StaticResource Check}" Content="{DynamicResource LOCMM_Verbose}" IsChecked="{Binding Data.VerboseLog}"/>
+      <CheckBox Style="{StaticResource Check}" Content="{DynamicResource LOCMM_LogImages}" IsChecked="{Binding Data.LogImageDecisions}"/>
+      <TextBlock Style="{StaticResource Section}" Text="{DynamicResource LOCMM_SecAdvanced}"/>
+      <StackPanel Orientation="Horizontal">
+        <StackPanel>
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ProbeKb}" Margin="0,0,0,3"/>
+          <TextBox Text="{Binding Data.ImageProbeKb, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Margin="24,0,0,0">
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ProbeTimeout}" Margin="0,0,0,3"/>
+          <TextBox Text="{Binding Data.ImageProbeTimeoutSeconds, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Margin="24,0,0,0">
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_KeepDecisions}" Margin="0,0,0,3"/>
+          <TextBox Text="{Binding Data.KeepDecisions, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+        </StackPanel>
+      </StackPanel>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_ProbeHelp}"/>
+      <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+        <StackPanel>
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_BreakerFailures}" Margin="0,0,0,3"/>
+          <TextBox Text="{Binding Data.BreakerFailures, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Margin="24,0,0,0">
+          <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_BreakerPause}" Margin="0,0,0,3"/>
+          <TextBox Text="{Binding Data.BreakerPauseMinutes, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+        </StackPanel>
+      </StackPanel>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_BreakerHelp}"/>
+      <TextBlock Style="{StaticResource Label}" Text="{DynamicResource LOCMM_ConfigPath}"/>
+      <TextBox Text="{Binding Data.ConfigPath, UpdateSourceTrigger=PropertyChanged}"/>
+      <TextBlock Style="{StaticResource Help}" Text="{DynamicResource LOCMM_ConfigPathHelp}"/>
+
+      <TextBlock Style="{StaticResource Section}" Text="{DynamicResource LOCMM_SecDiag}"/>
+      <StackPanel Orientation="Horizontal">
+        <Button Content="{DynamicResource LOCMM_Refresh}" Command="{Binding RefreshCommand}" Padding="12,4"/>
+        <Button Content="{DynamicResource LOCMM_Copy}" Command="{Binding CopyCommand}" Padding="12,4" Margin="8,0,0,0"/>
+        <Button Content="{DynamicResource LOCMM_ResetStats}" Command="{Binding ResetStatsCommand}" Padding="12,4" Margin="8,0,0,0"/>
+      </StackPanel>
+      <TextBox Text="{Binding Diagnostics, Mode=OneWay}" IsReadOnly="True" TextWrapping="NoWrap" AcceptsReturn="True" MinHeight="120" MaxHeight="320"
+               Margin="0,8,0,0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

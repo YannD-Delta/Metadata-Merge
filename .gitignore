@@ -1,0 +1,13 @@
+.local/
+build/
+testbed/
+backup/
+exchange/
+private/
+prive/
+CLAUDE.local.md
+.env*
+__pycache__/
+*.pyc
+*.pdb
+*.bak

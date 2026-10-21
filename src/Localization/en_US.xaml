@@ -1,0 +1,142 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- Sources -->
+    <sys:String x:Key="LOCMM_OfficialStore">Official store</sys:String>
+    <sys:String x:Key="LOCMM_NotInstalled">(not installed)</sys:String>
+
+    <!-- Fields -->
+    <sys:String x:Key="LOCMM_Field_Genres">Genres</sys:String>
+    <sys:String x:Key="LOCMM_Field_Developers">Developers</sys:String>
+    <sys:String x:Key="LOCMM_Field_Publishers">Publishers</sys:String>
+    <sys:String x:Key="LOCMM_Field_Features">Features</sys:String>
+    <sys:String x:Key="LOCMM_Field_Tags">Tags</sys:String>
+    <sys:String x:Key="LOCMM_Field_Links">Links</sys:String>
+    <sys:String x:Key="LOCMM_Field_Series">Series</sys:String>
+    <sys:String x:Key="LOCMM_Field_Platforms">Platforms</sys:String>
+    <sys:String x:Key="LOCMM_Field_Regions">Regions</sys:String>
+    <sys:String x:Key="LOCMM_Field_AgeRatings">Age ratings</sys:String>
+
+    <sys:String x:Key="LOCMM_Field_CoverImage">Cover image</sys:String>
+    <sys:String x:Key="LOCMM_Field_BackgroundImage">Background image</sys:String>
+    <sys:String x:Key="LOCMM_Field_Icon">Icon</sys:String>
+    <sys:String x:Key="LOCMM_ImageHelp">Image field (off by default). Metadata Merge looks at the size of every candidate before anything is downloaded (only the first bytes of each file are read), then returns the best one: right proportions, big enough, not above the maximum, preferred format. Playnite then downloads only that one. Pictures that a source already holds in memory or on disk are measured directly.</sys:String>
+    <sys:String x:Key="LOCMM_ImgMin">Smallest accepted size (width x height)</sys:String>
+    <sys:String x:Key="LOCMM_ImgMax">Largest wanted size (0 = no limit)</sys:String>
+    <sys:String x:Key="LOCMM_ImgTolerance">Proportion tolerance (%)</sys:String>
+    <sys:String x:Key="LOCMM_ImgComparable">Sizes this close (%) are comparable</sys:String>
+    <sys:String x:Key="LOCMM_ImgFormats">Format preference, best first</sys:String>
+    <sys:String x:Key="LOCMM_ImgFormatsHelp">Used between comparable sizes. JPEG first: it decodes faster than PNG, and much faster than WebP. Above the maximum, an image is only used when nothing smaller fits (the smallest one is then taken). Expected proportions: cover 2:3, background 16:9, icon square.</sys:String>
+    <sys:String x:Key="LOCMM_SumImage">best image, max {0}</sys:String>
+    <sys:String x:Key="LOCMM_MinAgreeing">Kept only if given by at least N sources (0 = all)</sys:String>
+    <sys:String x:Key="LOCMM_MaxValueLength">Longest name kept (0 = no limit)</sys:String>
+    <sys:String x:Key="LOCMM_AgreeingHelp">Union only. With 2, a tag that only one source knows is left out: useful against noisy sources. A source counts once per value.</sys:String>
+    <sys:String x:Key="LOCMM_Sort">Order of the result</sys:String>
+    <sys:String x:Key="LOCMM_SortSource">As the sources give them</sys:String>
+    <sys:String x:Key="LOCMM_SortAlpha">Alphabetical</sys:String>
+    <sys:String x:Key="LOCMM_SortAgreed">Most agreed first</sys:String>
+    <sys:String x:Key="LOCMM_Case">Writing of names</sys:String>
+    <sys:String x:Key="LOCMM_CaseKeep">As the source wrote them</sys:String>
+    <sys:String x:Key="LOCMM_CaseTitle">Capitalise lower-case words</sys:String>
+    <sys:String x:Key="LOCMM_CaseLower">all lower case</sys:String>
+    <sys:String x:Key="LOCMM_CaseUpper">ALL UPPER CASE</sys:String>
+    <sys:String x:Key="LOCMM_Exclude">Names to drop (regular expression)</sys:String>
+    <sys:String x:Key="LOCMM_ExcludeHelp">Example: ^(early access|.*bundle.*)$ . Not case sensitive; an invalid expression is ignored and flagged when you save.</sys:String>
+    <sys:String x:Key="LOCMM_ImgMinPixels">Fewest pixels (0 = any)</sys:String>
+    <sys:String x:Key="LOCMM_ImgMaxFileKb">Heaviest file, KB (0 = any)</sys:String>
+    <sys:String x:Key="LOCMM_ImgRatio">Expected ratio</sys:String>
+    <sys:String x:Key="LOCMM_ImgStrict">Reject pictures with the wrong proportions (off: only used when no picture has the right ones)</sys:String>
+    <sys:String x:Key="LOCMM_ImgAboveCap">Pictures above the largest wanted size</sys:String>
+    <sys:String x:Key="LOCMM_AboveSmallest">Use the smallest one, only if nothing fits</sys:String>
+    <sys:String x:Key="LOCMM_AboveReject">Never use them</sys:String>
+    <sys:String x:Key="LOCMM_AboveLargest">Ignore the maximum, take the largest</sys:String>
+    <sys:String x:Key="LOCMM_ImgUnknown">Pictures whose size cannot be read</sys:String>
+    <sys:String x:Key="LOCMM_UnknownFirst">Use the first one if nothing can be measured</sys:String>
+    <sys:String x:Key="LOCMM_UnknownReject">Never use them</sys:String>
+    <sys:String x:Key="LOCMM_LogImages">Write the image decisions to the log</sys:String>
+    <sys:String x:Key="LOCMM_SecAdvanced">Advanced</sys:String>
+    <sys:String x:Key="LOCMM_ProbeKb">Bytes read to measure a picture (KB)</sys:String>
+    <sys:String x:Key="LOCMM_ProbeTimeout">Time limit for the pictures of a game (s, 0 = general)</sys:String>
+    <sys:String x:Key="LOCMM_KeepDecisions">Image decisions kept in the diagnostics</sys:String>
+    <sys:String x:Key="LOCMM_ProbeHelp">The first request reads this many KB; a second, wider one only happens when a JPEG hides its size behind a big profile.</sys:String>
+    <sys:String x:Key="LOCMM_BreakerFailures">Pause a source after N games failed in a row (0 = never)</sys:String>
+    <sys:String x:Key="LOCMM_BreakerPause">Pause length (minutes)</sys:String>
+    <sys:String x:Key="LOCMM_BreakerHelp">Protects a long batch: a source that is down is not asked again for a while instead of costing its full time limit on every game. It comes back by itself and is flagged in the diagnostics.</sys:String>
+    <sys:String x:Key="LOCMM_SecClean">Library clean-up</sys:String>
+    <sys:String x:Key="LOCMM_CleanHelp">Applies the renaming rules and the "names to drop" expressions of each field to the values ALREADY stored in your library (genres, developers, publishers, features, tags, series, platforms, regions, age ratings): values that match are renamed, merged into the existing one, or removed; every other value, such as the tags and features written by other add-ons, is left exactly as it is. You first get a report of what would change and must confirm; everything is written in one update, an undo journal is saved first (the undo works while Playnite runs), and a second run changes nothing.</sys:String>
+    <sys:String x:Key="LOCMM_CleanButton">Clean the library...</sys:String>
+    <sys:String x:Key="LOCMM_CleanSaveFirst">The rules used are the ones shown in these settings right now (renaming rules and names to drop of each field). It never runs by itself.</sys:String>
+    <sys:String x:Key="LOCMM_MenuClean">Clean the library (report first)</sys:String>
+    <sys:String x:Key="LOCMM_MenuReports">Open the clean-up reports</sys:String>
+    <sys:String x:Key="LOCMM_CleanTitle">Metadata Merge - library clean-up</sys:String>
+    <sys:String x:Key="LOCMM_CleanNothing">Nothing to change: no stored value matches a renaming rule or a drop expression. The report was still saved:</sys:String>
+    <sys:String x:Key="LOCMM_CleanDry">DRY RUN: nothing has been changed yet. This is what the clean-up would do.</sys:String>
+    <sys:String x:Key="LOCMM_CleanReportAt">Full report: {0}</sys:String>
+    <sys:String x:Key="LOCMM_CleanAsk">Apply it to the library?</sys:String>
+    <sys:String x:Key="LOCMM_CleanApply">Apply</sys:String>
+    <sys:String x:Key="LOCMM_CleanOpenReport">Open the full report</sys:String>
+    <sys:String x:Key="LOCMM_CleanCancel">Cancel</sys:String>
+    <sys:String x:Key="LOCMM_CleanChanged">The library changed since the report: nothing was written. Run the clean-up again.</sys:String>
+    <sys:String x:Key="LOCMM_CleanFailed">The clean-up stopped: {0}</sys:String>
+    <sys:String x:Key="LOCMM_CleanDone">Library clean-up done: {0}. Undo it from the Metadata Merge menu if needed.</sys:String>
+    <sys:String x:Key="LOCMM_MenuUndo">Undo the last clean-up</sys:String>
+    <sys:String x:Key="LOCMM_UndoButton">Undo the last clean-up...</sys:String>
+    <sys:String x:Key="LOCMM_CleanUndoNote">An undo journal is saved before anything is written: the clean-up can be undone from the Metadata Merge menu, Playnite open.</sys:String>
+    <sys:String x:Key="LOCMM_UndoNone">There is no clean-up to undo.</sys:String>
+    <sys:String x:Key="LOCMM_UndoApply">Undo it</sys:String>
+    <sys:String x:Key="LOCMM_UndoAsk">Undo the clean-up of {0}? It changed {1} value(s) and {2} game(s). Values and lists are put back as they were; a game whose list was edited since is left alone.</sys:String>
+    <sys:String x:Key="LOCMM_UndoDone">Clean-up undone: {0}.</sys:String>
+    <sys:String x:Key="LOCMM_RulesImport">Import rules from a file...</sys:String>
+    <sys:String x:Key="LOCMM_RulesExport">Export the rules...</sys:String>
+    <sys:String x:Key="LOCMM_RulesHelp">A rules file sets the renaming rules and the "names to drop" of several fields at once: [Genres] then one alias=name per line; [Features: drop] then one regular expression per line. Only the fields and parts the file holds are replaced; press OK to keep the result.</sys:String>
+    <sys:String x:Key="LOCMM_RulesImported">Rules read: {0} field(s) updated, {1} renaming rule(s), {2} drop expression(s). Press OK in the settings to keep them.</sys:String>
+    <sys:String x:Key="LOCMM_RulesProblems">Lines that were ignored:</sys:String>
+    <!-- Settings page -->
+    <sys:String x:Key="LOCMM_Intro">Metadata Merge adds up the results of several metadata sources instead of keeping only the first one that answers. In Playnite's "Download metadata" dialog, put Metadata Merge FIRST in the source list of a field: it then asks the other sources of that field at the same time and returns everything they found, without duplicates. It never writes anything itself: Playnite applies the result as usual.</sys:String>
+    <sys:String x:Key="LOCMM_SecFields">Fields</sys:String>
+    <sys:String x:Key="LOCMM_FieldsHelp">Unfold a field to change how it is merged. A field that is switched off is left to the next source of Playnite's list.</sys:String>
+    <sys:String x:Key="LOCMM_Mode">How to combine the sources</sys:String>
+    <sys:String x:Key="LOCMM_ModeUnion">Union: add the values of all the sources</sys:String>
+    <sys:String x:Key="LOCMM_ModeFirst">First source that has a value (like Playnite)</sys:String>
+    <sys:String x:Key="LOCMM_Sources">Which sources</sys:String>
+    <sys:String x:Key="LOCMM_SourcesPlaynite">The sources of Playnite's list for this field</sys:String>
+    <sys:String x:Key="LOCMM_SourcesCustom">My own list (below)</sys:String>
+    <sys:String x:Key="LOCMM_PlayniteListNow">Playnite's saved list for this field (read from its configuration; the dialog's choice only counts once saved as the default):</sys:String>
+    <sys:String x:Key="LOCMM_ListNone">(no list found: use your own list below)</sys:String>
+    <sys:String x:Key="LOCMM_ListNotFirst">Metadata Merge is not in this list: all the sources are merged</sys:String>
+    <sys:String x:Key="LOCMM_OwnList">My own list</sys:String>
+    <sys:String x:Key="LOCMM_OwnListHelp">Tick the sources to merge; the order is the priority (the first spelling of a value wins). Also used when Playnite's list gives nothing.</sys:String>
+    <sys:String x:Key="LOCMM_Up">Move up</sys:String>
+    <sys:String x:Key="LOCMM_Down">Move down</sys:String>
+    <sys:String x:Key="LOCMM_PerSourceCap">Most values per source (0 = no limit)</sys:String>
+    <sys:String x:Key="LOCMM_TotalCap">Most values in total (0 = no limit)</sys:String>
+    <sys:String x:Key="LOCMM_CapHelp">Useful for noisy sources (e.g. user tags): the first values of each source are kept.</sys:String>
+    <sys:String x:Key="LOCMM_Synonyms">Renaming rules</sys:String>
+    <sys:String x:Key="LOCMM_SynonymsHelp">One rule per line: alias=name. "Role-playing (RPG)=RPG" renames; "Early Access=" drops the value. Lines starting with # are comments.</sys:String>
+    <sys:String x:Key="LOCMM_SumUnion">Union</sys:String>
+    <sys:String x:Key="LOCMM_SumFirst">First with a value</sys:String>
+    <sys:String x:Key="LOCMM_SumPlaynite">Playnite's list</sys:String>
+    <sys:String x:Key="LOCMM_SumCustom">own list</sys:String>
+    <sys:String x:Key="LOCMM_Off">off</sys:String>
+    <sys:String x:Key="LOCMM_SummaryPerSource">{0} per source</sys:String>
+    <sys:String x:Key="LOCMM_SummaryTotal">{0} at most</sys:String>
+    <sys:String x:Key="LOCMM_SecGeneral">General</sys:String>
+    <sys:String x:Key="LOCMM_Timeout">Time a source gets for one game (seconds)</sys:String>
+    <sys:String x:Key="LOCMM_TimeoutHelp">A source that is late is left out for that game; the others are kept and Playnite is never held up longer.</sys:String>
+    <sys:String x:Key="LOCMM_Prefetch">Ask every source once per game for all the enabled fields</sys:String>
+    <sys:String x:Key="LOCMM_PrefetchHelp">Recommended. Playnite asks field by field; this makes one parallel round per game and answers each field from it. Off: one round per field.</sys:String>
+    <sys:String x:Key="LOCMM_Loose">Loose matching of values</sys:String>
+    <sys:String x:Key="LOCMM_LooseHelp">Ignore case, accents, spaces, hyphens and company forms (Inc., Ltd, GmbH...) when two values are compared: "Co-op" and "Coop", "Valve" and "Valve Corporation" count as one.</sys:String>
+    <sys:String x:Key="LOCMM_NotifyErrors">Show a notification when a source fails or is too slow</sys:String>
+    <sys:String x:Key="LOCMM_Verbose">Write one log line per game and source</sys:String>
+    <sys:String x:Key="LOCMM_ConfigPath">Playnite configuration file (leave empty)</sys:String>
+    <sys:String x:Key="LOCMM_ConfigPathHelp">Where the per-field source order is read from (config.json of Playnite, read only). Only fill this for a portable or unusual setup.</sys:String>
+    <sys:String x:Key="LOCMM_SecDiag">Diagnostics</sys:String>
+    <sys:String x:Key="LOCMM_Refresh">Refresh</sys:String>
+    <sys:String x:Key="LOCMM_Copy">Copy</sys:String>
+    <sys:String x:Key="LOCMM_ResetStats">Reset statistics</sys:String>
+
+    <!-- Notification -->
+    <sys:String x:Key="LOCMM_NotifProblems">Metadata Merge: {0} source problem(s) since Playnite started: {1}. Click to open the settings; details are in the Playnite log.</sys:String>
+    <sys:String x:Key="LOCMM_StatProblems">{0}: {1} error(s), {2} timeout(s)</sys:String>
+</ResourceDictionary>
